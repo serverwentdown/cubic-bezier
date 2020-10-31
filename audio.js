@@ -95,7 +95,7 @@ self.prototype = {
 	getParam: function(t) {
 		var point = this.getGradient(t);
 		var x = point[0], gradient = point[2];
-		var frequency = Math.min(150 + Math.abs(gradient) * 200, 6000);
+		var frequency = Math.min(150 + Math.abs(gradient) * 200, 10000);
 		var time = x * this.duration;
 		return [frequency, time];
 	},
