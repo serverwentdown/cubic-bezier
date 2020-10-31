@@ -153,7 +153,7 @@ var self = window.bezierLibrary = {
 
 // Ensure global vars for ids (most browsers already do this anyway, so…)
 [
-	'values', 'curve','P1','P2', 'current', 'compare', 'duration', 
+	'values', 'curve','P1','P2', 'current', 'compare', 'duration', 'sound',
 	'library', 'save', 'copy', 'copyoptionstoggle', 'copybuttons', 'copyoptions', 'copystatement', 'copycss', 'copyvalue', 'go', 'import', 'export', 'json', 'importexport'
 ].forEach(function(id) { window[id] = $('#' + id); });
 
@@ -331,6 +331,9 @@ go.onclick = function() {
 	
 	current.classList.toggle('move');
 	compare.classList.toggle('move');
+	if (sound.checked) {
+		visualizeSound(bezierCanvas.bezier, getDuration());
+	}
 };
 
 duration.oninput = function() {
@@ -340,6 +343,8 @@ duration.oninput = function() {
 	compare.style.setProperty(prefix + 'transition-duration', val + 's', null);
 	updateCopyInputs();
 };
+// Ensure form values are preserved
+duration.oninput();
 
 window['import'].onclick = function() {
 	json.value = '';
